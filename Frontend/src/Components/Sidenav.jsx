@@ -3,7 +3,7 @@ import { Home, User2, LogOut,Twitter} from 'lucide-react'
 
 export default function Sidenav() {
       return (
-        <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r bg-black px-5 py-8">
+        <aside className="flex h-screen w-64 flex-col overflow-y-auto border-r bg-black px-5 py-8 fixed ">
           <a href="#">
           <svg
           viewBox="0 0 24 24"
