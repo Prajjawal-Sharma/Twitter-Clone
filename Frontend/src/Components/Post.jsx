@@ -59,7 +59,7 @@ export default function Post() {
         alt="Dan_Abromov"
       />
       <span className="flex">
-      <Link to={JSON.parse(localStorage.getItem("user_data"))._id === posts.postedBy._id ? "/profile" : `/profile/${posts.postedBy._id}`}>
+      <Link to={JSON.parse(localStorage.getItem("user_data"))._id === posts?.postedBy._id ? "/profile" : `/profile/${posts?.postedBy._id}`}>
         <span className="text-xl font-medium text-white">{posts.postedBy.userName}</span>
         </Link>
         <span className='time'> {formatDate(posts.createdAt)}</span>

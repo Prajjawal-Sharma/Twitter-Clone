@@ -3,10 +3,12 @@ import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import '../App.css'
 
 export default function SignIn() {
   const [userName,setUserName]=useState("")
     const [password,setPassword]=useState("")
+    const [loading,setLoading]=useState(false)
     const navigator=useNavigate()
   const LoginData=()=>{
     fetch("https://twitter-clone-production-451a.up.railway.app/api/auth/login",{
@@ -24,6 +26,7 @@ export default function SignIn() {
     if(!data.error){
       localStorage.setItem('user_data',JSON.stringify(data.userData))
       document.cookie = `token=${data.token}; path=/;`;
+      setLoading(false)
       navigator('/')
       }
       else{
@@ -90,13 +93,35 @@ export default function SignIn() {
                 </div>
               </div>
               <div>
-                <button
+                {
+                  !loading?
+                  <button
                   type="button"
                   className="inline-flex w-full items-center justify-center rounded-md bg-white k px-3.5 py-2.5 font-semibold leading-7 text-black hover:bg-white/80"
-                  onClick={LoginData}
+                  
+                  onClick={()=>{
+                    setLoading(true)
+                    LoginData()
+                  }}
                   >
                   Sign In <ArrowRight className="ml-2" size={16} />
                 </button>
+                :
+                <div className="loader m-auto">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+                <div class="bar4"></div>
+                <div class="bar5"></div>
+                <div class="bar6"></div>
+                <div class="bar7"></div>
+                <div class="bar8"></div>
+                <div class="bar9"></div>
+                <div class="bar10"></div>
+                <div class="bar11"></div>
+                <div class="bar12"></div>
+            </div>
+                }
                 <p className="mt-2 text-center text-sm text-white">
             Don&apos;t have an account?{' '}
             <Link to='/signup' className='hover:underline'>
