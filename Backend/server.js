@@ -18,7 +18,7 @@ mongoose.connection.on('error',()=>{
     console.log('Could not connect to mongodb')
 })
 app.get('/',(req,res)=>{
-    res.send('<h1>Welcome to Mini Twitter Backend</h1>')
+    res.send('<h1>Welcome to Twitter </h1>')
 })
 
 app.use('/api/auth',userAuth);
