@@ -17,7 +17,7 @@ export default function UserProfile() {
 
   // to follow user
   const followUser = (userId) => {
-    fetch("http://localhost:5000/api/users/follow", {
+    fetch("https://twitter-clone-production-451a.up.railway.app/api/users/follow", {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ export default function UserProfile() {
 
   // to unfollow user
   const unfollowUser = (userId) => {
-    fetch("http://localhost:5000/api/users/unfollow", {
+    fetch("https://twitter-clone-production-451a.up.railway.app/api/users/unfollow", {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export default function UserProfile() {
 
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/users/${userId}`, {
+    fetch(`https://twitter-clone-production-451a.up.railway.app/api/users/${userId}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': "Bearer " + document.cookie.split('=')[1]
@@ -75,7 +75,7 @@ export default function UserProfile() {
 
 useEffect(() => {
     // fetching all the posts
-    fetch("http://localhost:5000/api/tweets/displayAllTweets", {
+    fetch("https://twitter-clone-production-451a.up.railway.app/api/tweets/displayAllTweets", {
         headers: {
             'Content-Type':'application/json',
             "Authorization": "Bearer " + document.cookie.split('=')[1]

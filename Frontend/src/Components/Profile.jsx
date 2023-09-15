@@ -10,7 +10,7 @@ export default function Profile() {
   const [open, setOpen] = useState(false)
 
   useEffect(()=>{
-    fetch(`http://localhost:5000/api/users/${JSON.parse(localStorage.getItem('user_data'))?._id}`,{
+    fetch(`https://twitter-clone-production-451a.up.railway.app/api/users/${JSON.parse(localStorage.getItem('user_data'))?._id}`,{
       headers:{
         'Content-Type':'application/json',
         'Authorization':"Bearer "+document.cookie.split('=')[1]
@@ -18,17 +18,13 @@ export default function Profile() {
     })
     .then(res=>res.json())
     .then((result)=>{
-      // setPic(result.post)
-      setUser(result.getUser)
-      // console.log(pic)
+      setUser(result.getUser) 
       console.log(result)
-      // setPosts(result.)
     })
   },[])
 
   useEffect(() => {
-    // fetching all the posts
-    fetch("http://localhost:5000/api/tweets/displayAllTweets", {
+    fetch("https://twitter-clone-production-451a.up.railway.app/api/tweets/displayAllTweets", {
         headers: {
             'Content-Type':'application/json',
             "Authorization": "Bearer " + document.cookie.split('=')[1]
@@ -42,7 +38,7 @@ export default function Profile() {
 },[posts])
 const DeletePost=(posts)=>{
   if(window.confirm('Do you really want to delete this post?')){
-  fetch(`http://localhost:5000/api/tweets/delete/${posts}`,{
+  fetch(`https://twitter-clone-production-451a.up.railway.app/api/tweets/delete/${posts}`,{
     method:'DELETE',
     headers:{
       'Content-Type':'application/json',
@@ -100,8 +96,6 @@ const DeletePost=(posts)=>{
               <button className='text-white' onClick={()=>{setOpen(true)}}> Edit Post
               
               </button>
-              
-            {/* <Pencil stroke='white' onClick={()=>{setOpen(true)}}/> */}
             <Trash2 stroke='white'onClick={()=>{
             DeletePost(userPost._id);
             navigate('/');

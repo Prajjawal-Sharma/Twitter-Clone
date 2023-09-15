@@ -5,7 +5,7 @@ export default function Post() {
   const [data, setData] = useState([]);
   useEffect(() => {
     
-    fetch("http://localhost:5000/api/tweets/displayAllTweets", {
+    fetch("https://twitter-clone-production-451a.up.railway.app/api/tweets/displayAllTweets", {
         headers: {
             'Content-Type':'application/json',
             "Authorization": "Bearer " + document.cookie.split('=')[1]

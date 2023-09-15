@@ -18,7 +18,7 @@ export default function Tweet() {
   const notify = () => toast("Posted Successfully!");
   const createTweet = async () => {
     const response = await fetch(
-      "http://localhost:5000/api/tweets/createTweet",
+      "https://twitter-clone-production-451a.up.railway.app/api/tweets/createTweet",
       {
         method: "POST",
         headers: {

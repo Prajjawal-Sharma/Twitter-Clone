@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 export default function MyFollowing() {
     const [data, setData] = useState([]);
     useEffect(() => {
-        fetch("http://localhost:5000/api/users/myfollowing/post", {
+        fetch("https://twitter-clone-production-451a.up.railway.app/api/users/myfollowing/post", {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",

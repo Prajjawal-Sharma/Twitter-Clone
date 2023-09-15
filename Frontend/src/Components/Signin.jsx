@@ -9,7 +9,7 @@ export default function SignIn() {
     const [password,setPassword]=useState("")
     const navigator=useNavigate()
   const LoginData=()=>{
-    fetch("http://localhost:5000/api/auth/login",{
+    fetch("https://twitter-clone-production-451a.up.railway.app/api/auth/login",{
       method:"post",
       headers:{
         "Content-Type":"application/json"
