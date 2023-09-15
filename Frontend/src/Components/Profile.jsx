@@ -1,13 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import Sidenav from './Sidenav'
 import { Pencil,Trash2} from 'lucide-react'
-// import EditPost from './editPost';
+
 
 
 export default function Profile() {
   const[posts,setPosts]=useState([]);
   const[user,setUser]=useState("");
-  const [open, setOpen] = useState(false)
+  
 
   useEffect(()=>{
     fetch(`https://twitter-clone-production-451a.up.railway.app/api/users/${JSON.parse(localStorage.getItem('user_data'))?._id}`,{
@@ -105,7 +105,7 @@ const DeletePost=(posts)=>{
             ))}
     </div>
     </div>
-    {/* <EditPost open={open} setOpen={setOpen}/> */}
+    
     </>
   )
 }
