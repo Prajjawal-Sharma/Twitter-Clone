@@ -1,8 +1,26 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function Signup() {
+  const [userName,setUserName]=useState("")
+    const [password,setPassword]=useState("")
+    const navigator=useNavigate()
+  const registerUser=async()=>{
+    const response=await fetch("http://localhost:5000/api/auth/register",{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            userName:userName,
+            password:password
+        })
+    })
+    const data=await response.json()
+    navigator('/signin')
+}
   return (
     <section className='bg-black h-[100vh]'>
       <div className="flex items-center justify-center px-4 py-10 sm:px-6 sm:py-16 lg:px-8 lg:py-24">
@@ -39,6 +57,7 @@ export default function Signup() {
                     type="username"
                     placeholder="Username"
                     id="username"
+                    onChange={(e)=>setUserName(e.target.value)}
                   ></input>
                 </div>
               </div>
@@ -55,6 +74,7 @@ export default function Signup() {
                     type="password"
                     placeholder="Password"
                     id="password"
+                    onChange={(e)=>setPassword(e.target.value)}
                   ></input>
                 </div>
               </div>
@@ -62,7 +82,11 @@ export default function Signup() {
                 <button
                   type="button"
                   className="inline-flex w-full items-center justify-center rounded-md bg-white px-3.5 py-2.5 font-semibold leading-7 text-black hover:bg-white/80"
+                  onClick={()=>{
+                    registerUser();
+                  }}                
                 >
+
                   Create Account <ArrowRight className="ml-2" size={16} />
                 </button>
                 <p className="mt-2 text-center text-base text-white">

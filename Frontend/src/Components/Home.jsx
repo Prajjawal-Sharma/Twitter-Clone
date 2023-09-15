@@ -1,8 +1,16 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Sidenav from './Sidenav'
 import Tweet from './Tweet'
 import Post from './Post'
+import { useNavigate } from 'react-router-dom'
+
 export default function Home() {
+  const navigator=useNavigate()
+  useEffect(()=>{
+    if(!document.cookie.split('=')[1]){
+      navigator('/signin')
+    }
+  },[])
   return (
     <>
     <div className="flex bg-black">
@@ -12,8 +20,6 @@ export default function Home() {
     <Tweet/>
     <Post/>
     </div>
-    
-
     </div>
     </>
   )

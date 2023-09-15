@@ -1,9 +1,38 @@
 import React from 'react'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function SignIn() {
-  
+  const [userName,setUserName]=useState("")
+    const [password,setPassword]=useState("")
+    const navigator=useNavigate()
+  const LoginData=()=>{
+    fetch("http://localhost:5000/api/auth/login",{
+      method:"post",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        userName:userName,
+        password:password
+      })
+    }).then(res=>res.json())
+    .then(data=>{
+      console.log(data)
+    if(!data.error){
+      localStorage.setItem('user_data',JSON.stringify(data.userData))
+      document.cookie = `token=${data.token}; path=/;`;
+      navigator('/')
+      }
+      else{
+          console.log(data.error)
+      }
+     
+    })
+    .catch(err=>console.log(err))
+}
   return (
     <section className='bg-black h-[100vh]'>
       
@@ -27,7 +56,7 @@ export default function SignIn() {
             Sign in to your account
           </h2>
           
-          <form action="#" method="POST" className="mt-8">
+          
             <div className="space-y-5">
               <div>
                 <label htmlFor="" className="text-base font-medium text-white">
@@ -39,6 +68,7 @@ export default function SignIn() {
                     className="flex h-10 w-full rounded-md border text-white border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="username"
                     placeholder="Username"
+                    onChange={(e)=>setUserName(e.target.value)}
                   ></input>
                 </div>
               </div>
@@ -55,6 +85,7 @@ export default function SignIn() {
                     className="flex h-10 w-full text-white rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="password"
                     placeholder="Password"
+                    onChange={(e)=>setPassword(e.target.value)}
                   ></input>
                 </div>
               </div>
@@ -62,7 +93,8 @@ export default function SignIn() {
                 <button
                   type="button"
                   className="inline-flex w-full items-center justify-center rounded-md bg-white k px-3.5 py-2.5 font-semibold leading-7 text-black hover:bg-white/80"
-                >
+                  onClick={LoginData}
+                  >
                   Sign In <ArrowRight className="ml-2" size={16} />
                 </button>
                 <p className="mt-2 text-center text-sm text-white">
@@ -74,7 +106,7 @@ export default function SignIn() {
             </p>
               </div>
             </div>
-          </form>
+         
         </div>
       </div>
     </section>
