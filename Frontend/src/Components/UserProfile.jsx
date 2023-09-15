@@ -1,7 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Sidenav from './Sidenav'
 import { Pencil,Trash2} from 'lucide-react'
-import EditPost from './editPost'
 import { useNavigate,useParams } from 'react-router-dom'
 
 

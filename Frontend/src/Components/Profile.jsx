@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import Sidenav from './Sidenav'
 import { Pencil,Trash2} from 'lucide-react'
-import EditPost from './EditPost';
+// import EditPost from './editPost';
 
 
 export default function Profile() {
@@ -105,7 +105,7 @@ const DeletePost=(posts)=>{
             ))}
     </div>
     </div>
-    <EditPost  open={open} setOpen={setOpen}/>
+    {/* <EditPost open={open} setOpen={setOpen}/> */}
     </>
   )
 }
